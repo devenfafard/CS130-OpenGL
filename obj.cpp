@@ -24,7 +24,7 @@ obj::~obj()
 {
 }
 
-bool obj::load_material(const string& filename, unsigned int index)
+bool obj::load_material(const string& filename)
 {
     ifstream istr(filename.c_str());
     if (!istr) return false;
@@ -33,10 +33,6 @@ bool obj::load_material(const string& filename, unsigned int index)
     string sval;
 
     string matact;
-    mats_list.resize(index+1);
-
-    std::map<std::string, material>& mats=mats_list[index];
-
     while (getline(istr, line))
     {
         stringstream ss(line);

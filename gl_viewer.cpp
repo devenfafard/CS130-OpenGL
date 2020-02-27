@@ -99,7 +99,6 @@ void gl_viewer::glut_mouse_click_event_wrapper(int button, int state, int x, int
 
     if(button == GLUT_MIDDLE_BUTTON && state == GLUT_UP)
         singleton->end_zoom(x,y);
-
 }
 
 void gl_viewer::glut_mouse_move_event_wrapper(int x, int y)

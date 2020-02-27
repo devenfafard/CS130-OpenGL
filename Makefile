@@ -1,5 +1,4 @@
 CXX = g++
-#CXXFLAGS = -Wall -g -O3
 CXXFLAGS = -Wall -g -O3 -I/usr/csshare/pkgs/glew-1.13.0/include/ -L/usr/csshare/pkgs/glew-1.13.0/lib64/ -Wl,-rpath=/usr/csshare/pkgs/glew-1.13.0/lib64/
 LIBS  = -lGL -lGLU -lglut -lGLEW
 SRCS = $(wildcard *.cpp)
@@ -11,7 +10,7 @@ ifeq ($(UNAME_S),Darwin)
 	CXXFLAGS += -Wno-deprecated-declarations
 endif
 
-TARGET = shaders
+TARGET = textures
 
 .PHONY: all clean
 

@@ -53,24 +53,18 @@ public:
     inline size_t get_face_count() const;
     inline const face& get_face(size_t i) const;
     inline const material& get_material(
-        const std::string& name, unsigned int index=0
+        const std::string& name
         ) const;
-    inline const std::map<std::string, material>& get_materials(unsigned int index=0) const;
-
-    bool valid_material(unsigned int index)
-    { return index<mats_list.size();}
-    
-    bool add_material(const std::string& filename)
-    {return load_material(filename,mats_list.size());}
+    inline const std::map<std::string, material>& get_materials() const;
 
 private:
-    bool load_material(const std::string& filename,unsigned int index=0);
+    bool load_material(const std::string& filename);
 
     std::vector<float> verts;
     std::vector<float> norms;
     std::vector<float> tex;
     std::vector<face> faces;
-    std::vector<std::map<std::string, material> > mats_list;
+    std::map<std::string, material> mats;
 };
 
 size_t obj::get_face_count() const
@@ -115,21 +109,18 @@ const float* obj::get_texture_indices(size_t i) const
 }
 
 const obj::material& obj::get_material(
-    const std::string& name, unsigned int index
+    const std::string& name
     ) const
 {
-    assert(index<mats_list.size());
-    const std::map<std::string, material>& mats=mats_list[index];
     std::map<std::string, material>::const_iterator i =
         mats.find(name);
     assert(i != mats.end());
     return i->second;
 }
 
-const std::map<std::string, obj::material>& obj::get_materials(unsigned int index) const
+const std::map<std::string, obj::material>& obj::get_materials() const
 {
-    assert(index<mats_list.size());
-    return mats_list[index];
+    return mats;
 }
 
 #endif

@@ -21,10 +21,10 @@ private:
     bool solid;
     float lightAngle;
     GLuint program;
+    GLuint texture;
     obj o;
     bool right_button_down;
     int initial_x;
-    int material_index;
 };
 
 #endif

@@ -1,11 +1,11 @@
+uniform sampler2D tex;
+varying vec3 N;
 varying vec4 position;
-varying vec3 normal;
-varying vec3 light_direction;
 
 void main()
 {
-    normal = normalize(gl_NormalMatrix * gl_Normal);
-    position = gl_ModelViewProjectionMatrix * gl_Vertex;
-    light_direction = normalize(gl_LightSource[0].position.xyz - position.xyz);
-    gl_Position = position;
+    gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
+    N = gl_NormalMatrix*gl_Normal;
+    gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * gl_Vertex;
+    position = gl_ModelViewMatrix * gl_Vertex;
 }
